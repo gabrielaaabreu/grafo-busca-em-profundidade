@@ -38,14 +38,15 @@ class Grafo {
         }
     }
 
-    DFSvisit(vert){
-        this.tempo = this.tempo + 1
+    DFSvisit(vert){this.tempo = this.tempo + 1
         vert.descoberta = this.tempo //momento da busca em que o vértice vert foi descoberto
         vert.cor = 'cinzento'
-        for(let i = 0; i < vert.adjacencia.size; i++){
+        for(let i = 0; i < vert.adjacencia.length; i++){
             if(vert.adjacencia[i].cor == 'branco'){
                 vert.adjacencia[i].pai = vert
                 this.DFSvisit(vert.adjacencia[i])
+            } else if(vert.adjacencia[i].cor == 'cinzento'){
+                console.log("HÁ UM CICLO NO GRAFO!")
             }
         }
         vert.cor = 'preto'
@@ -59,7 +60,7 @@ class Grafo {
 grafoFluxoAtendimento = new Grafo()
 let verticesAtendimento = ['Pegar senha', 'Triagem', 'Cadastro', 
                             'Avaliação médica','Realizar exames', 
-                            'Internação']
+                            'Ir à praia', 'Internação']
 
 //Adicionar vértices
 for(let i = 0; i < verticesAtendimento.length; i++){
@@ -67,12 +68,13 @@ for(let i = 0; i < verticesAtendimento.length; i++){
 }
 
 //Adicionar vizinhos
-grafoFluxoAtendimento.vertices[0].adjacencia.push(verticesAtendimento[1])
-grafoFluxoAtendimento.vertices[1].adjacencia.push(verticesAtendimento[2])
-grafoFluxoAtendimento.vertices[2].adjacencia.push(verticesAtendimento[3])
-grafoFluxoAtendimento.vertices[3].adjacencia.push(verticesAtendimento[4])
-grafoFluxoAtendimento.vertices[3].adjacencia.push(verticesAtendimento[5])
-grafoFluxoAtendimento.vertices[4].adjacencia.push(verticesAtendimento[3])
+grafoFluxoAtendimento.vertices[0].adjacencia.push(grafoFluxoAtendimento.vertices[1])
+grafoFluxoAtendimento.vertices[1].adjacencia.push(grafoFluxoAtendimento.vertices[2])
+grafoFluxoAtendimento.vertices[2].adjacencia.push(grafoFluxoAtendimento.vertices[3])
+grafoFluxoAtendimento.vertices[3].adjacencia.push(grafoFluxoAtendimento.vertices[4])
+grafoFluxoAtendimento.vertices[3].adjacencia.push(grafoFluxoAtendimento.vertices[6])
+grafoFluxoAtendimento.vertices[4].adjacencia.push(grafoFluxoAtendimento.vertices[5])
+grafoFluxoAtendimento.vertices[5].adjacencia.push(grafoFluxoAtendimento.vertices[3])
 
 grafoFluxoAtendimento.DFS()
 

@@ -15,6 +15,7 @@ class Grafo {
     constructor(){
         this.vertices = []
         this.tempo = 0
+        this.nCiclos = 0
     }
 
     adicionarVertice(acao){
@@ -22,8 +23,7 @@ class Grafo {
             if(this.vertices[i].acao == acao) return this.vertices[i].acao
         }
         const vertice = new Vertice(acao);
-        this.vertices.push(vertice); 
-        return vertice;
+        this.vertices.push(vertice);
     }
 
     DFS(){ //busca em profundidade
@@ -36,9 +36,11 @@ class Grafo {
                 this.DFSvisit(this.vertices[i])
             }
         }
+        console.log("HÁ " + this.nCiclos + " CICLO(S) NO GRAFO!")
     }
 
-    DFSvisit(vert){this.tempo = this.tempo + 1
+    DFSvisit(vert){
+        this.tempo = this.tempo + 1
         vert.descoberta = this.tempo //momento da busca em que o vértice vert foi descoberto
         vert.cor = 'cinzento'
         for(let i = 0; i < vert.adjacencia.length; i++){
@@ -46,7 +48,8 @@ class Grafo {
                 vert.adjacencia[i].pai = vert
                 this.DFSvisit(vert.adjacencia[i])
             } else if(vert.adjacencia[i].cor == 'cinzento'){
-                console.log("HÁ UM CICLO NO GRAFO!")
+                this.nCiclos++
+                
             }
         }
         vert.cor = 'preto'
@@ -75,6 +78,7 @@ grafoFluxoAtendimento.vertices[3].adjacencia.push(grafoFluxoAtendimento.vertices
 grafoFluxoAtendimento.vertices[3].adjacencia.push(grafoFluxoAtendimento.vertices[6])
 grafoFluxoAtendimento.vertices[4].adjacencia.push(grafoFluxoAtendimento.vertices[5])
 grafoFluxoAtendimento.vertices[5].adjacencia.push(grafoFluxoAtendimento.vertices[3])
+grafoFluxoAtendimento.vertices[6].adjacencia.push(grafoFluxoAtendimento.vertices[3])
 
 grafoFluxoAtendimento.DFS()
 
@@ -100,6 +104,31 @@ console.log("Cinzentos: ")
 console.log(cinzentos)
 console.log("Pretos:")
 console.log(pretos)
+
+/*grafoTeste =  new Grafo()
+let verticesTeste = ['u', 'v', 'w', 'x', 'y', 'z']
+
+//Adicionar vértices
+for(let i = 0; i < verticesTeste.length; i++){
+    grafoTeste.adicionarVertice(verticesTeste[i])
+}
+
+//Adicionar vizinhos
+grafoTeste.vertices[0].adjacencia.push(grafoTeste.vertices[1])
+grafoTeste.vertices[0].adjacencia.push(grafoTeste.vertices[3])
+grafoTeste.vertices[1].adjacencia.push(grafoTeste.vertices[4])
+grafoTeste.vertices[2].adjacencia.push(grafoTeste.vertices[4])
+grafoTeste.vertices[2].adjacencia.push(grafoTeste.vertices[5])
+grafoTeste.vertices[3].adjacencia.push(grafoTeste.vertices[1])
+grafoTeste.vertices[4].adjacencia.push(grafoTeste.vertices[3])
+grafoTeste.vertices[5].adjacencia.push(grafoTeste.vertices[5])
+
+let final = new Map()
+for(let j = 0; j < grafoTeste.vertices.length; j++){
+    final.set(j, grafoTeste.vertices[j])
+}
+
+console.log(final)*/
 
 
 

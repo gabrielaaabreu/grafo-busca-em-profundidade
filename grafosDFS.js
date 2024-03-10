@@ -58,12 +58,12 @@ class Grafo {
     }
 }
 
-
+//EXEMPLO DE FLUXO DE ATENDIMENTO COM UM CICLO
 //Criando fluxo de atendimento
-grafoFluxoAtendimento = new Grafo()
+/*grafoFluxoAtendimento = new Grafo()
 let verticesAtendimento = ['Pegar senha', 'Triagem', 'Cadastro', 
                             'Avaliação médica','Realizar exames', 
-                            'Ir à praia', 'Internação']
+                            'Ser medicado', 'Alta']
 
 //Adicionar vértices
 for(let i = 0; i < verticesAtendimento.length; i++){
@@ -78,57 +78,80 @@ grafoFluxoAtendimento.vertices[3].adjacencia.push(grafoFluxoAtendimento.vertices
 grafoFluxoAtendimento.vertices[3].adjacencia.push(grafoFluxoAtendimento.vertices[6])
 grafoFluxoAtendimento.vertices[4].adjacencia.push(grafoFluxoAtendimento.vertices[5])
 grafoFluxoAtendimento.vertices[5].adjacencia.push(grafoFluxoAtendimento.vertices[3])
-grafoFluxoAtendimento.vertices[6].adjacencia.push(grafoFluxoAtendimento.vertices[3])
 
 grafoFluxoAtendimento.DFS()
 
-
-let brancos = new Map()
-let cinzentos = new Map()
 let pretos = new Map()
 
 for(let j = 0; j < grafoFluxoAtendimento.vertices.length; j++){
-    if(grafoFluxoAtendimento.vertices[j].cor == 'branco'){
-        brancos.set(j, grafoFluxoAtendimento.vertices[j])
-    }
-    if(grafoFluxoAtendimento.vertices[j].cor == 'cinzento'){
-        cinzentos.set(j, grafoFluxoAtendimento.vertices[j])
-    }
-    if(grafoFluxoAtendimento.vertices[j].cor == 'preto'){
         pretos.set(j, grafoFluxoAtendimento.vertices[j])
-    }
 }
-console.log("Brancos: ")
-console.log(brancos)
-console.log("Cinzentos: ")
-console.log(cinzentos)
 console.log("Pretos:")
-console.log(pretos)
+console.log(pretos)*/
 
-/*grafoTeste =  new Grafo()
-let verticesTeste = ['u', 'v', 'w', 'x', 'y', 'z']
+//EXEMPLO DE FLUXO DE ATENDIMENTO COM 2 CICLOS
+//Criando fluxo de atendimento
+/*grafoFluxoAtendimento2 = new Grafo()
+let verticesAtendimento2 = ['Pegar senha', 'Triagem', 'Cadastro', 
+                            'Avaliação médica','Realizar exames', 
+                            'Internação']
 
 //Adicionar vértices
-for(let i = 0; i < verticesTeste.length; i++){
-    grafoTeste.adicionarVertice(verticesTeste[i])
+for(let i = 0; i < verticesAtendimento2.length; i++){
+    grafoFluxoAtendimento2.adicionarVertice(verticesAtendimento2[i])
 }
 
 //Adicionar vizinhos
-grafoTeste.vertices[0].adjacencia.push(grafoTeste.vertices[1])
-grafoTeste.vertices[0].adjacencia.push(grafoTeste.vertices[3])
-grafoTeste.vertices[1].adjacencia.push(grafoTeste.vertices[4])
-grafoTeste.vertices[2].adjacencia.push(grafoTeste.vertices[4])
-grafoTeste.vertices[2].adjacencia.push(grafoTeste.vertices[5])
-grafoTeste.vertices[3].adjacencia.push(grafoTeste.vertices[1])
-grafoTeste.vertices[4].adjacencia.push(grafoTeste.vertices[3])
-grafoTeste.vertices[5].adjacencia.push(grafoTeste.vertices[5])
+grafoFluxoAtendimento2.vertices[0].adjacencia.push(grafoFluxoAtendimento2.vertices[1])
+grafoFluxoAtendimento2.vertices[1].adjacencia.push(grafoFluxoAtendimento2.vertices[2])
+grafoFluxoAtendimento2.vertices[2].adjacencia.push(grafoFluxoAtendimento2.vertices[3])
+grafoFluxoAtendimento2.vertices[3].adjacencia.push(grafoFluxoAtendimento2.vertices[4])
+grafoFluxoAtendimento2.vertices[3].adjacencia.push(grafoFluxoAtendimento2.vertices[5])
+grafoFluxoAtendimento2.vertices[4].adjacencia.push(grafoFluxoAtendimento2.vertices[3])
+grafoFluxoAtendimento2.vertices[5].adjacencia.push(grafoFluxoAtendimento2.vertices[3])
 
-let final = new Map()
-for(let j = 0; j < grafoTeste.vertices.length; j++){
-    final.set(j, grafoTeste.vertices[j])
+grafoFluxoAtendimento2.DFS()
+
+let pretos2 = new Map()
+
+for(let j = 0; j < grafoFluxoAtendimento2.vertices.length; j++){
+        pretos2.set(j, grafoFluxoAtendimento2.vertices[j])
+}
+console.log("Pretos:")
+console.log(pretos2)*/
+
+//EXEMPLO DE ÁRVORE DE DECISÃO
+grafoArvoreDecisao = new Grafo()
+let verticesArvore = ['Dor', 'Febre', 'Cansaço', 'Cultura positiva',
+                       'Troponina aumentada', 'TSH aumentado', 'Vertigem',
+                        'Infecção bacteriana', 'Infarto', 'Hipotireoidismo',
+                        'Labirintite']
+
+//Adicionar vértices
+for(let i = 0; i < verticesArvore.length; i++){
+    grafoArvoreDecisao.adicionarVertice(verticesArvore[i])
 }
 
-console.log(final)*/
+//Adicionar vizinhos
+grafoArvoreDecisao.vertices[0].adjacencia.push(grafoArvoreDecisao.vertices[1])
+grafoArvoreDecisao.vertices[0].adjacencia.push(grafoArvoreDecisao.vertices[2])
+grafoArvoreDecisao.vertices[1].adjacencia.push(grafoArvoreDecisao.vertices[3])
+grafoArvoreDecisao.vertices[1].adjacencia.push(grafoArvoreDecisao.vertices[4])
+grafoArvoreDecisao.vertices[2].adjacencia.push(grafoArvoreDecisao.vertices[5])
+grafoArvoreDecisao.vertices[2].adjacencia.push(grafoArvoreDecisao.vertices[6])
+grafoArvoreDecisao.vertices[3].adjacencia.push(grafoArvoreDecisao.vertices[7])
+grafoArvoreDecisao.vertices[4].adjacencia.push(grafoArvoreDecisao.vertices[8])
+grafoArvoreDecisao.vertices[5].adjacencia.push(grafoArvoreDecisao.vertices[9])
+grafoArvoreDecisao.vertices[6].adjacencia.push(grafoArvoreDecisao.vertices[10])
+
+grafoArvoreDecisao.DFS()
+
+let final = new Map()
+for(let j = 0; j < grafoArvoreDecisao.vertices.length; j++){
+    final.set(j, grafoArvoreDecisao.vertices[j])
+}
+console.log("Pretos:")
+console.log(final)
 
 
 

@@ -16,6 +16,9 @@ class Grafo {
         this.vertices = []
         this.tempo = 0
         this.nCiclos = 0
+        this.nArestasArvore = 0
+        this.nArestasCruzadas = 0
+        this.nArestasDiretas = 0
     }
 
     adicionarVertice(acao){
@@ -37,6 +40,9 @@ class Grafo {
             }
         }
         console.log("HÁ " + this.nCiclos + " CICLO(S) NO GRAFO!")
+        console.log("Há " + this.nArestasArvore + " arestas de árvore no grafo")
+        console.log("Há " + this.nArestasDiretas + " arestas diretas no grafo")
+        console.log("Há " + this.nArestasCruzadas + " arestas cruzadas no grafo")
     }
 
     DFSvisit(vert){
@@ -46,10 +52,16 @@ class Grafo {
         for(let i = 0; i < vert.adjacencia.length; i++){
             if(vert.adjacencia[i].cor == 'branco'){
                 vert.adjacencia[i].pai = vert
+                this.nArestasArvore++
                 this.DFSvisit(vert.adjacencia[i])
             } else if(vert.adjacencia[i].cor == 'cinzento'){
-                this.nCiclos++
-                
+                this.nCiclos++ //indica número de arestas de retorno também
+            } else if(vert.adjacencia[i].cor == 'preto'){
+                if(vert.adjacencia[i].descoberta > vert.descoberta){
+                    this.nArestasDiretas++
+                } else if(vert.adjacencia[i].descoberta < vert.descoberta){
+                    this.nArestasCruzadas++
+                }
             }
         }
         vert.cor = 'preto'
@@ -91,7 +103,7 @@ console.log(pretos)*/
 
 //EXEMPLO DE FLUXO DE ATENDIMENTO COM 2 CICLOS
 //Criando fluxo de atendimento
-/*grafoFluxoAtendimento2 = new Grafo()
+grafoFluxoAtendimento2 = new Grafo()
 let verticesAtendimento2 = ['Pegar senha', 'Triagem', 'Cadastro', 
                             'Avaliação médica','Realizar exames', 
                             'Internação']
@@ -117,11 +129,11 @@ let pretos2 = new Map()
 for(let j = 0; j < grafoFluxoAtendimento2.vertices.length; j++){
         pretos2.set(j, grafoFluxoAtendimento2.vertices[j])
 }
-console.log("Pretos:")
-console.log(pretos2)*/
+
+console.log(pretos2)
 
 //EXEMPLO DE ÁRVORE DE DECISÃO
-grafoArvoreDecisao = new Grafo()
+/*grafoArvoreDecisao = new Grafo()
 let verticesArvore = ['Dor', 'Febre', 'Cansaço', 'Cultura positiva',
                        'Troponina aumentada', 'TSH aumentado', 'Vertigem',
                         'Infecção bacteriana', 'Infarto', 'Hipotireoidismo',
@@ -151,7 +163,31 @@ for(let j = 0; j < grafoArvoreDecisao.vertices.length; j++){
     final.set(j, grafoArvoreDecisao.vertices[j])
 }
 console.log("Pretos:")
-console.log(final)
+console.log(final)*/
+
+/*grafo = new Grafo()
+
+let verticesGrafo = ['u', 'v', 'w',
+                    'x', 'y', 'z']
+
+for(vertice of verticesGrafo){
+    grafo.adicionarVertice(vertice)
+}
+
+grafo.vertices[0].adjacencia.push(grafo.vertices[1])
+grafo.vertices[0].adjacencia.push(grafo.vertices[3])
+grafo.vertices[1].adjacencia.push(grafo.vertices[4])
+//grafo.vertices[2].adjacencia.push(grafo.vertices[4])
+grafo.vertices[2].adjacencia.push(grafo.vertices[5])
+grafo.vertices[3].adjacencia.push(grafo.vertices[1])
+grafo.vertices[4].adjacencia.push(grafo.vertices[3])
+grafo.vertices[5].adjacencia.push(grafo.vertices[5])
+
+grafo.DFS()*/
+
+
+
+
 
 
 

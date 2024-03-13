@@ -170,7 +170,7 @@ grafo = new Grafo()
 let verticesGrafo = ['u', 'v', 'w',
                     'x', 'y', 'z']
 
-for(vertice of verticesGrafo){
+for(let vertice of verticesGrafo){
     grafo.adicionarVertice(vertice)
 }
 

@@ -103,7 +103,7 @@ console.log(pretos)*/
 
 //EXEMPLO DE FLUXO DE ATENDIMENTO COM 2 CICLOS
 //Criando fluxo de atendimento
-grafoFluxoAtendimento2 = new Grafo()
+/*grafoFluxoAtendimento2 = new Grafo()
 let verticesAtendimento2 = ['Pegar senha', 'Triagem', 'Cadastro', 
                             'Avaliação médica','Realizar exames', 
                             'Internação']
@@ -130,7 +130,7 @@ for(let j = 0; j < grafoFluxoAtendimento2.vertices.length; j++){
         pretos2.set(j, grafoFluxoAtendimento2.vertices[j])
 }
 
-console.log(pretos2)
+console.log(pretos2)*/
 
 //EXEMPLO DE ÁRVORE DE DECISÃO
 /*grafoArvoreDecisao = new Grafo()
@@ -165,7 +165,7 @@ for(let j = 0; j < grafoArvoreDecisao.vertices.length; j++){
 console.log("Pretos:")
 console.log(final)*/
 
-/*grafo = new Grafo()
+grafo = new Grafo()
 
 let verticesGrafo = ['u', 'v', 'w',
                     'x', 'y', 'z']
@@ -177,13 +177,13 @@ for(vertice of verticesGrafo){
 grafo.vertices[0].adjacencia.push(grafo.vertices[1])
 grafo.vertices[0].adjacencia.push(grafo.vertices[3])
 grafo.vertices[1].adjacencia.push(grafo.vertices[4])
-//grafo.vertices[2].adjacencia.push(grafo.vertices[4])
+grafo.vertices[2].adjacencia.push(grafo.vertices[4])
 grafo.vertices[2].adjacencia.push(grafo.vertices[5])
 grafo.vertices[3].adjacencia.push(grafo.vertices[1])
 grafo.vertices[4].adjacencia.push(grafo.vertices[3])
 grafo.vertices[5].adjacencia.push(grafo.vertices[5])
 
-grafo.DFS()*/
+grafo.DFS()
 
 
 
